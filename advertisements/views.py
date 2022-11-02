@@ -1,4 +1,5 @@
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.throttling import AnonRateThrottle
 from rest_framework.viewsets import ModelViewSet
 from django_filters import rest_framework as filters
 
@@ -14,6 +15,7 @@ class AdvertisementViewSet(ModelViewSet):
     serializer_class = AdvertisementSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = AdvertisementFilter
+    permission_classes = [IsAuthenticated, IsAdvertisementOwner]
 
     # настройте ViewSet, укажите атрибуты для кверисета,
     #   сериализаторов и фильтров
