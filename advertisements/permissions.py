@@ -6,3 +6,4 @@ class IsAdvertisementOwner(BasePermission):
         if request.method == 'GET':
             return True
         return request.user.is_authenticated and obj.creator == request.user
+    
